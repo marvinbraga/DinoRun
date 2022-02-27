@@ -76,11 +76,3 @@ class Background:
 
     def update(self):
         self.move()
-
-
-class BaseBackgroundManager:
-
-    def __init__(self, scene):
-        self.scene = scene
-        self._artefacts1 = []
-        self._artefacts2 = []
