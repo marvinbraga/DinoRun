@@ -9,13 +9,13 @@ class GameLoop(AbstractGameLoop):
 
     def __init__(self, width, height, title, background_color=(0, 0, 0)):
         super().__init__(width, height, title, background_color)
-        icon = pygame.image.load("sprites/dino_.png")
-        pygame.display.set_icon(icon)
+        self.icon = pygame.image.load("sprites/dino_.png")
         self.game = Game()
         self.game_over = GameOver()
         self.add_valid_key(*self.game.valid_keys)
 
     def draw(self):
+        pygame.display.set_icon(self.icon)
         self.game.draw(self.window)
         self.game.update()
         self.loop = not self.game.is_finished
