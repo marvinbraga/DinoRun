@@ -20,7 +20,4 @@ class Ptera(AnimatedArtefact):
 
     def update(self):
         super().update()
-        self.move()
-
-    def move(self):
         self.movement.move()
