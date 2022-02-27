@@ -7,12 +7,13 @@ from core import settings
 
 class AbstractGameLoop(metaclass=ABCMeta):
 
-    def __init__(self, width, height, title):
+    def __init__(self, width, height, title, background_color=(0, 0, 0)):
         pygame.init()
         self.window = pygame.display.set_mode([width, height])
         self.title = title
         pygame.display.set_caption(self.title)
         self.fps = pygame.time.Clock()
+        self.background_color = background_color
 
         self.loop = True
         self._valid_keys = []
@@ -54,6 +55,7 @@ class AbstractGameLoop(metaclass=ABCMeta):
         try:
             while self.loop:
                 self.fps.tick(settings.FPS)
+                self.window.fill(self.background_color)
                 self.draw()
                 self.events()
                 pygame.display.update()
