@@ -16,11 +16,11 @@ class GameLoop(AbstractGameLoop):
         self.add_valid_key(*self.game.valid_keys)
 
     def draw(self):
-        # self.game.draw(self.window)
-        # self.game.update()
-        # self.loop = not self.game.is_finished
-        self.game_over.draw(self.window)
-        self.game_over.update()
+        self.game.draw(self.window)
+        self.game.update()
+        self.loop = not self.game.is_finished
+        # self.game_over.draw(self.window)
+        # self.game_over.update()
 
     def check_keys(self, event):
         self.game.check_keys(event)
