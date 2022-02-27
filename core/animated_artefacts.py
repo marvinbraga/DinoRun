@@ -18,6 +18,11 @@ class AnimatedArtefact(BaseArtefact):
         self.frame = 0
         self.images = [pygame.image.load(image.format(i)) for i in range(*self.frames)]
 
+    def adjust_images(self, width, height):
+        self.images = [
+            pygame.transform.scale(image, (width, height)) for image in self.images
+        ]
+
     def update(self):
         super().update()
         self.animate()
