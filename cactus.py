@@ -9,7 +9,6 @@ from core.rl_movement import MovementRight2Left
 
 
 class CactusSize(Enum):
-
     SMALL = 0
     BIG = 1
 
@@ -36,9 +35,7 @@ class BaseCactus(Artefact):
         self.is_ptera = False
 
     def update(self):
-        self.move()
-
-    def move(self):
+        super().update()
         self.movement.move()
 
 

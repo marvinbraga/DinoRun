@@ -16,7 +16,5 @@ class Cloud(Artefact):
         self.movement = MovementRight2Left(self, 1, -100)
 
     def update(self):
-        self.move()
-
-    def move(self):
+        super().update()
         self.movement.move()
