@@ -32,17 +32,12 @@ class DinoJump(AbstractStatus):
 
     def __init__(self, dino):
         super().__init__(dino, ["sprites/dino_.png", "sprites/dino_.png"])
-        self.image = self._load_image()
         self.sound = None
 
         self.gravity = -0.25
         self.up = 7
         self.time = 10
         self.bottom_limit = 170
-
-    def _load_image(self):
-        image = pygame.image.load("sprites/dino_.png")
-        return pygame.transform.scale(image, (self.width, self.height))
 
     def go(self):
         self.dino.y -= self.up
@@ -97,10 +92,13 @@ class Dino(AnimatedArtefact):
         self.jump = DinoJump(self)
         self.run = DinoRun(self)
         self.duck = DinoDuck(self)
+        self.init_images()
 
-        self.image = self.jump.image
+    def init_images(self):
+        self.image = self.jump.images[0]
         self.get_rect()
         self.images = self.run.images
+        return self
 
     def check_keys(self, event):
         if event.key == pygame.K_SPACE:
