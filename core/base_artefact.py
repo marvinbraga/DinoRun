@@ -17,9 +17,13 @@ class BaseArtefact(pygame.sprite.Sprite):
 
     def load_image(self, image, x, y):
         self.image = pygame.image.load(image)
+        self.get_rect()
+        return self
+
+    def get_rect(self):
         self.rect = self.image.get_rect()
-        self.x = self.rect[0] = x
-        self.y = self.rect[1] = y
+        self.rect[0] = self.x
+        self.rect[1] = self.y
         return self
 
     def draw(self, window):

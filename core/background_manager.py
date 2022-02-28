@@ -57,7 +57,7 @@ class Background:
         self.move_type = move_type
         self.height = height
         self.width = width
-        image2_position = self.move_type.get_positions(self)
+        image2_position = self.get_image_position()
         self.image1 = Artefact(image, x, y, *groups)
         self.image2 = Artefact(image, *image2_position, *groups)
         self.movement = self.move_type.get_movement()(self.image1, self.image2, x, y, width, height)

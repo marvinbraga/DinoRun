@@ -14,7 +14,7 @@ class Ptera(AnimatedArtefact):
         image = "sprites/ptera{}.png"
         frames = (1, 2)
         super().__init__(image, x, y, frames, *groups)
-        self.adjust_images(50, 40)
+        self.images = AnimatedArtefact.adjust_images(self.images, 50, 40)
         self.movement = MovementRight2Left(self, 8, -100)
         self.tick_limit = 3
 

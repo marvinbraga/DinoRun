@@ -33,6 +33,11 @@ class Game(Scene):
         self.create_cactus()
         self.create_ptera()
         self.player = Dino(self.all_sprites, self.all_players)
+        self.add_valid_keys(*self.player.valid_keys)
+
+    def add_valid_keys(self, *keys):
+        for key in keys:
+            self.valid_keys.append(key)
 
     def check_events(self, event):
         if event.type == self.ADD_CLOUD:
@@ -41,6 +46,9 @@ class Game(Scene):
             self.create_cactus()
         elif event.type == self.ADD_PTERA:
             self.create_ptera()
+
+    def check_keys(self, event):
+        self.player.check_keys(event)
 
     def create_clouds(self, count=1):
         for i in range(count):

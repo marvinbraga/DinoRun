@@ -25,16 +25,15 @@ class AnimatedArtefact(BaseArtefact):
         if first_image:
             self.images = [pygame.image.load(image.format(i)) for i in range(*self.frames)]
 
-    def load_images(self, files):
-        self.images = [pygame.image.load(i) for i in files]
-        return self
+    @staticmethod
+    def load_images(files):
+        return [pygame.image.load(i) for i in files]
 
-    def adjust_images(self, width, height):
-        if self.images:
-            self.images = [
-                pygame.transform.scale(image, (width, height)) for image in self.images
-            ]
-        return self
+    @staticmethod
+    def adjust_images(images, width, height):
+        return [
+            pygame.transform.scale(image, (width, height)) for image in images
+        ]
 
     def update(self):
         super().update()
