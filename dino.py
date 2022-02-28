@@ -107,9 +107,9 @@ class Dino(AnimatedArtefact):
     def update(self):
         if DinoStatus.JUMPING in self.status:
             self.images = self.jump.images
+            self.jump.update()
         elif DinoStatus.DUCKING in self.status:
             self.images = self.duck.images
         else:
             self.images = self.run.images
-        self.jump.update()
         super().update()
