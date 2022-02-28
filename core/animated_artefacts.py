@@ -1,3 +1,5 @@
+import os
+
 import pygame
 from pygame.sprite import AbstractGroup
 
@@ -8,7 +10,10 @@ from core.base_artefact import BaseArtefact
 class AnimatedArtefact(BaseArtefact):
 
     def __init__(self, image, x, y, frames=(1, 4), *groups: AbstractGroup):
-        super().__init__(image.format(1), x, y, *groups)
+        first_image = None
+        if image:
+            first_image = image.format(1)
+        super().__init__(first_image, x, y, *groups)
         self.index = 0
         self.speed = 10
         self.tick_limit = settings.FPS
@@ -16,12 +21,20 @@ class AnimatedArtefact(BaseArtefact):
 
         self.frames = (frames[0], frames[1] + 1)
         self.frame = 0
-        self.images = [pygame.image.load(image.format(i)) for i in range(*self.frames)]
+        self.images = []
+        if first_image:
+            self.images = [pygame.image.load(image.format(i)) for i in range(*self.frames)]
+
+    def load_images(self, files):
+        self.images = [pygame.image.load(i) for i in files]
+        return self
 
     def adjust_images(self, width, height):
-        self.images = [
-            pygame.transform.scale(image, (width, height)) for image in self.images
-        ]
+        if self.images:
+            self.images = [
+                pygame.transform.scale(image, (width, height)) for image in self.images
+            ]
+        return self
 
     def update(self):
         super().update()
@@ -33,4 +46,5 @@ class AnimatedArtefact(BaseArtefact):
             self.ticks = 0
             self.index = (self.index + 1) % (max(*self.frames) - 1)
 
-        self.image = self.images[self.index]
+        if self.images:
+            self.image = self.images[self.index]

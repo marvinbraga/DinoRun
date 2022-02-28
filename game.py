@@ -3,6 +3,7 @@ import pygame
 from cactus import CactusSize
 from cloud import Cloud
 from core.scene import Scene
+from dino import Dino
 from ground import Ground
 from ptera import Ptera
 
@@ -18,6 +19,7 @@ class Game(Scene):
         self.all_cactus = pygame.sprite.Group()
         self.all_ptera = pygame.sprite.Group()
         self.all_enemies = pygame.sprite.Group()
+        self.all_players = pygame.sprite.Group()
         self.ground = Ground(self.all_sprites, self.all_grounds)
 
         self.ADD_CLOUD = pygame.USEREVENT + 1
@@ -30,6 +32,7 @@ class Game(Scene):
         self.create_clouds()
         self.create_cactus()
         self.create_ptera()
+        self.player = Dino(self.all_sprites, self.all_players)
 
     def check_events(self, event):
         if event.type == self.ADD_CLOUD:
@@ -57,3 +60,4 @@ class Game(Scene):
     def update(self):
         self.all_sprites.update()
         self.ground.update()
+        self.player.update()
