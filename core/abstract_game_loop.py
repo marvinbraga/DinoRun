@@ -7,9 +7,10 @@ from core import settings
 
 class AbstractGameLoop(metaclass=ABCMeta):
 
-    def __init__(self, width, height, title, background_color=(0, 0, 0)):
+    def __init__(self, width, height, title, icon=None, background_color=(0, 0, 0)):
         pygame.init()
         self.window = pygame.display.set_mode([width, height])
+        self.icon = icon
         self.title = title
         pygame.display.set_caption(self.title)
         self.fps = pygame.time.Clock()

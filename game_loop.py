@@ -8,9 +8,9 @@ from game_over import GameOver
 class GameLoop(AbstractGameLoop):
 
     def __init__(self, width, height, title, background_color=(0, 0, 0)):
-        super().__init__(width, height, title, background_color)
-        self.icon = pygame.image.load("sprites/dino_.png")
+        super().__init__(width, height, title, pygame.image.load("sprites/dino_.png"), background_color)
         self.game = Game()
+        self.background_color = self.game.background_color
         self.game_over = GameOver()
         self.add_valid_key(*self.game.valid_keys)
 

@@ -20,6 +20,7 @@ class Game(Scene):
         self.all_ptera = pygame.sprite.Group()
         self.all_enemies = pygame.sprite.Group()
         self.all_players = pygame.sprite.Group()
+        self.background_color = (240, 240, 240)
         self.ground = Ground(self.all_sprites, self.all_grounds)
 
         self.ADD_CLOUD = pygame.USEREVENT + 1
