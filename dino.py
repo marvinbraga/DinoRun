@@ -30,14 +30,19 @@ class AbstractStatus(metaclass=ABCMeta):
 
 class DinoJump(AbstractStatus):
 
+    _UP = 9
+    _GRAVITY = -0.25
+    _TIME = 0
+    _BOTTOM_LIMIT = 170
+
     def __init__(self, dino):
         super().__init__(dino, ["sprites/dino_.png", "sprites/dino_.png"])
         self.sound = None
 
-        self.gravity = -0.25
-        self.up = 7
-        self.time = 10
-        self.bottom_limit = 170
+        self.gravity = self._GRAVITY
+        self.up = self._UP
+        self.time = self._TIME
+        self.bottom_limit = self._BOTTOM_LIMIT
 
     def go(self):
         self.dino.y -= self.up
@@ -60,9 +65,9 @@ class DinoJump(AbstractStatus):
 
     def set_complete(self):
         if self.dino.y > self.bottom_limit:
-            self.up = 7
-            self.dino.y = 170
-            self.time = 0
+            self.up = self._UP
+            self.dino.y = self._BOTTOM_LIMIT
+            self.time = self._TIME
             self.dino.status.remove(DinoStatus.JUMPING)
         return self
 
