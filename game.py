@@ -3,6 +3,7 @@ import pygame
 from cactus import CactusSize
 from cloud import Cloud
 from core.scene import Scene
+from core.text import Text
 from dino import Dino
 from ground import Ground
 from ptera import Ptera
@@ -22,6 +23,8 @@ class Game(Scene):
         self.all_players = pygame.sprite.Group()
         self.background_color = (240, 240, 240)
         self.ground = Ground(self.all_sprites, self.all_grounds)
+        self.high_score = 0
+        self.score = Text("Arial bold", 30)
 
         self.ADD_CLOUD = pygame.USEREVENT + 1
         pygame.time.set_timer(self.ADD_CLOUD, 3000)
@@ -70,3 +73,4 @@ class Game(Scene):
         self.all_sprites.update()
         self.ground.update()
         self.player.update()
+        self.score.update(f"High score: {self.high_score}")
